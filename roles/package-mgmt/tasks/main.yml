@@ -24,14 +24,6 @@
     state: started
     enabled: yes
 
-- name: Add Sublime Text repo key
-  ansible.builtin.shell: curl -fsSL {{ sublime_repo_key }} | gpg --dearmor --batch --yes -o /etc/apt/trusted.gpg.d/sublime-text-keyring.gpg
-
-- name: Add Sublime Text repo
-  ansible.builtin.apt_repository:
-    repo: "{{ sublime_repo }}"
-    state: present
-
 - name: Ensuring all packages are up to date
   ansible.builtin.apt:
     update_cache: yes
@@ -85,11 +77,8 @@
     - seclists
     - steghide
     - strace
-    - sublime-text
-    - terminator
     - tmux
     - xclip
-    - xfce4-terminal
     - zaproxy
     - zlib1g-dev
     state: latest
